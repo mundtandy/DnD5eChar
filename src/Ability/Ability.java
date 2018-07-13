@@ -6,6 +6,9 @@ public class Ability {
   public Ability(String name) {
     this.name = name;
   }
- 
+  
+  public String getName() {
+	  return name;
+  }
 
 }

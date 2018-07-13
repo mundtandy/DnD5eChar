@@ -1,32 +1,23 @@
 package Ability;
 
 public class Spell extends Ability{
-  private int level;
-  private String school, range, castingTime, components, source, description;
-  private boolean ritual, concentration;
+  private Long level;
+  private String cTime, components, description, duration, range, school;
+  private boolean ritual;
 
-  public Spell(String name, int lvl, String scl, String rng, String cstTm, String cmps, String src, String desc,
-      boolean ritl, boolean conc) {
+  public Spell(String name, String cTime, String components, String description, String duration, Long level, String range,
+		  String school, boolean ritual) {
     super(name);
-    level = lvl; 
-    school = scl;
-    range = rng;
-    castingTime = cstTm;
-    components = cmps;
-    source = src;
-    description = desc;
-    ritual = ritl;
-    concentration = conc;
+    this.cTime = cTime;
+    this.components = components;
+    this.description = description;
+    this.duration = duration;
+    this.level = level;
+    this.range = range;
+    this.school = school;
+    this.ritual = ritual;
   }
   
-  public String toString() {
-    return name +
-        "\n"+ordinal(level);
-  }
+ 
   
-  String ordinal(int num)  {
-      String[] suffix = {"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"};
-      int m = num % 100;
-      return String.valueOf(num) + suffix[(m > 3 && m < 21) ? 0 : (m % 10)];
-  }
 }

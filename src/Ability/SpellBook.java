@@ -1,3 +1,4 @@
+package Ability;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +9,13 @@ public class SpellBook {
 		spellTree = new Node('*');
 	}
 	
-	public void addSpell(String spell) {
+	public void addSpell(Spell spell) {
 		char index;
 		Node currentNode = spellTree;
 		currentNode.increment();
-		for(int i = 0; i < spell.length(); i++) {
-			index = spell.charAt(i);
+		String currSpell = spell.getName();
+		for(int i = 0; i < currSpell.length(); i++) {
+			index = currSpell.charAt(i);
 			Node temp = currentNode.getNode(index);
 			if(temp == null) {
 				temp = new Node(index);
@@ -34,7 +36,7 @@ public class SpellBook {
 class Node{
 	private char letter;
 	private List<Node> children;
-	private String spell;
+	private Spell spell;
 	private int access;
 	
 	public Node(char c) {
@@ -78,14 +80,14 @@ class Node{
 		}
 	}
 	
-	public void addSpell(String spell) {
+	public void addSpell(Spell spell) {
 		this.spell = spell;
 	}
 	
 	public void displayTree(String spacing) {
 		System.out.println(spacing+getLetter());
 		if(spell != null)
-			System.out.println(spacing+spell);
+			System.out.println(spacing+spell.getName());
 		for(Node n: children)
 			n.displayTree(spacing+"  ");
 	}
