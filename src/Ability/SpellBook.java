@@ -31,6 +31,34 @@ public class SpellBook {
 		spellTree.displayTree("");
 	}
 	
+	public List<Spell> searchTree(String s){
+		ArrayList<Spell> toReturn = new ArrayList<Spell>();
+		Node current = spellTree;
+		
+		//traverse Tree till end of s is reached, immediately returning empty list if that
+		//letter does not exist as a child (meaning no Spell exists with this name)
+		for(int i = 0; i < s.length(); i++) {
+			current = current.getNode(s.charAt(i));
+			
+			if(current == null)
+				return toReturn;
+		}
+		
+		addFound(current, toReturn);
+		
+		return toReturn;
+		
+	}
+	
+	public void addFound(Node n, List<Spell> toReturn) {
+		if(n.getSpell() != null)
+			toReturn.add(n.getSpell());
+		
+		for(Node childN : n.getChildren()) {
+			addFound(childN, toReturn);
+		}
+	}
+	
 }
 
 class Node{
@@ -44,6 +72,10 @@ class Node{
 		children = new ArrayList<Node>();
 		spell = null;
 		access = 0;
+	}
+	
+	public Spell getSpell() {
+		return spell;
 	}
 	
 	public int getAccess() {
@@ -78,6 +110,10 @@ class Node{
 			}
 			children.add(n);
 		}
+	}
+	
+	public List<Node> getChildren() {
+		return children;
 	}
 	
 	public void addSpell(Spell spell) {

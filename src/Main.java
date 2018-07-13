@@ -10,8 +10,9 @@ public class Main {
    r.readSpells(testBook);
    
    
-   testBook.showTree();
+   //testBook.showTree();
    
-   
+   for(Spell s : testBook.searchTree("Ac"))
+	   System.out.println(s.getName());
   }
 }
