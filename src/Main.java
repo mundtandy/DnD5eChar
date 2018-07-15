@@ -1,4 +1,6 @@
 import Ability.*;
+
+
 import Dice.Dice;
 import Interface.Display;
 import Parse.ReadJSON;
@@ -12,7 +14,13 @@ public class Main {
    
    //testBook.showTree();
    
-   for(Spell s : testBook.searchTree("An"))
-	   System.out.println(s.getName());
+   //for(Spell s : testBook.searchTree("An"))
+	//   System.out.println(s.getName());
+   
+   
+   Display testshow = new Display(testBook);
+   testshow.spellSearchMode();
   }
+  
+  
 }
