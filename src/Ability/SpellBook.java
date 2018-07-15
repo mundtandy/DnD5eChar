@@ -13,7 +13,7 @@ public class SpellBook {
 		char index;
 		Node currentNode = spellTree;
 		currentNode.increment();
-		String currSpell = spell.getName();
+		String currSpell = spell.getName().toLowerCase();
 		for(int i = 0; i < currSpell.length(); i++) {
 			index = currSpell.charAt(i);
 			Node temp = currentNode.getNode(index);
@@ -34,11 +34,11 @@ public class SpellBook {
 	public List<Spell> searchTree(String s){
 		ArrayList<Spell> toReturn = new ArrayList<Spell>();
 		Node current = spellTree;
-		
+		String toSearch = s.toLowerCase();
 		//traverse Tree till end of s is reached, immediately returning empty list if that
 		//letter does not exist as a child (meaning no Spell exists with this name)
-		for(int i = 0; i < s.length(); i++) {
-			current = current.getNode(s.charAt(i));
+		for(int i = 0; i < toSearch.length(); i++) {
+			current = current.getNode(toSearch.charAt(i));
 			
 			if(current == null)
 				return toReturn;
@@ -68,7 +68,7 @@ class Node{
 	private int access;
 	
 	public Node(char c) {
-		letter = c;
+		letter = Character.toLowerCase(c);
 		children = new ArrayList<Node>();
 		spell = null;
 		access = 0;

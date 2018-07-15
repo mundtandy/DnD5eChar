@@ -12,7 +12,7 @@ public class Main {
    
    //testBook.showTree();
    
-   for(Spell s : testBook.searchTree("Ac"))
+   for(Spell s : testBook.searchTree("An"))
 	   System.out.println(s.getName());
   }
 }
