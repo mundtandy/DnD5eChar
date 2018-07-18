@@ -31,6 +31,20 @@ public class SpellBook {
 		spellTree.displayTree("");
 	}
 	
+	public String displaySpell(String s) {
+		Node current = spellTree;
+		String toSearch = s.toLowerCase();
+		
+		for(int i = 0; i < toSearch.length(); i++) {
+			current = current.getNode(toSearch.charAt(i));
+			
+			if(current == null)
+				return "Select a Spell";
+		}
+		
+		return (current.getSpell() != null ? current.getSpell().toString() : "Select a Spell");
+	}
+	
 	public List<Spell> searchTree(String s){
 		ArrayList<Spell> toReturn = new ArrayList<Spell>();
 		Node current = spellTree;
