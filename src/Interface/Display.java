@@ -50,7 +50,7 @@ public class Display {
 	public void spellSearchMode() {
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout (searchPanel, BoxLayout.Y_AXIS));
-		searchPanel.setPreferredSize(new Dimension(300, 500));
+		//searchPanel.setPreferredSize(new Dimension(300, 500));
 
 		JTextField searchField = new JTextField ();
 		searchField.setPreferredSize(new Dimension(300, 30));
@@ -65,9 +65,7 @@ public class Display {
 		JList searchList = new JList(model);
 		searchList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		searchList.setVisibleRowCount(-1);
-		searchList.setPreferredSize(new Dimension(300, 400));
-		searchList.setMaximumSize(searchList.getPreferredSize());
-		searchList.setMinimumSize(searchList.getPreferredSize());
+		
 
 		searchField.getDocument().addDocumentListener((SimpleDocumentListener) e -> {
 			model.clear();
@@ -84,13 +82,13 @@ public class Display {
 			//jl.setText(searchField.getText());
 		});
 		JScrollPane pane = new JScrollPane(searchList);
-		pane.setPreferredSize(new Dimension(250, 80));
-
-		searchField.setPreferredSize( new Dimension( 200, 24 ) );
+		pane.setPreferredSize(new Dimension(300, 400));
+		pane.setMaximumSize(pane.getPreferredSize());
+		pane.setMinimumSize(pane.getPreferredSize());
 
 
 		searchPanel.add(searchField);
-		searchPanel.add(searchList);
+		searchPanel.add(pane);
 
 		frame.getContentPane().add(searchPanel);
 
