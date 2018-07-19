@@ -29,6 +29,27 @@ public class Spell extends Ability{
 				+ description;
 	}
 	
+	public String toHTMLString() {
+		return "<b>" + name + "</b><br>"
+				+ "<i>" + (level == 0 ? "Cantrip, " : getOrdinal() + " level ") + school + (ritual ? " (ritual)" : "") + "</i><br><br>"
+				+ "Casting Time: " + cTime + "<br>"
+				+ "Range: " + range + "<br>"
+				+ "Components: " + components + "<br>"
+				+ "Duration: " + duration + "<br><br>"
+				+ formatDescription(description);
+	}
+	
+	public String formatDescription(String s) {
+		String newDescr = s;
+		
+		newDescr = newDescr.replaceAll("[ ]{2,}", " ");
+		newDescr = newDescr.replaceAll(". At Higher Levels.", ".<br>At Higher Levels.");
+		newDescr = newDescr.replaceAll("At Higher Levels.", "<b>At Higher Levels.</b>");
+		newDescr = newDescr.replaceAll("\n", "<br>");
+		
+		return newDescr;
+	}
+	
 	public String getOrdinal() {
 		switch (level % 100) {
 		    case 11:

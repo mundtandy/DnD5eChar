@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -29,7 +30,7 @@ import Ability.SpellBook;
 public class Display {
 	private SpellBook spellBook;
 	private JFrame frame;
-	private JTextArea displaySpell; 
+	private JEditorPane displaySpell; 
 
 	public Display(SpellBook sb) {
 		this.spellBook = sb;
@@ -54,7 +55,6 @@ public class Display {
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout (searchPanel, BoxLayout.Y_AXIS));
 		
-
 		JTextField searchField = new JTextField ();
 		searchField.setPreferredSize(new Dimension(300, 30));
 		searchField.setMaximumSize(searchField.getPreferredSize());
@@ -110,11 +110,12 @@ public class Display {
 	
 	public JPanel setRightSearch() {
 		JPanel displayPanel = new JPanel();
+		displaySpell = new JEditorPane();
+		displaySpell.setContentType("text/html");
+		//displaySpell = new JTextArea();
 		
-		displaySpell = new JTextArea();
-		
-		displaySpell.setLineWrap(true);
-		displaySpell.setWrapStyleWord(true);
+		//displaySpell.setLineWrap(true);
+		//displaySpell.setWrapStyleWord(true);
 		displaySpell.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		
 		JScrollPane displayPane = new JScrollPane(displaySpell);

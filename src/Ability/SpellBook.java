@@ -42,7 +42,7 @@ public class SpellBook {
 				return "Select a Spell";
 		}
 		
-		return (current.getSpell() != null ? current.getSpell().toString() : "Select a Spell");
+		return (current.getSpell() != null ? current.getSpell().toHTMLString() : "Select a Spell");
 	}
 	
 	public List<Spell> searchTree(String s){
