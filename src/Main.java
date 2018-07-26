@@ -19,7 +19,7 @@ public class Main {
    
    
    Display testshow = new Display(testBook);
-   testshow.spellSearchMode();
+   
   }
   
   
