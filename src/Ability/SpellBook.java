@@ -1,5 +1,6 @@
 package Ability;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SpellBook {
@@ -26,6 +27,8 @@ public class SpellBook {
 		currentNode.addSpell(spell);
 	}
 	
+	
+	
 	public void showTree() {
 		System.out.println("Spells added: "+spellTree.getAccess());
 		spellTree.displayTree("");
@@ -43,6 +46,22 @@ public class SpellBook {
 		}
 		
 		return (current.getSpell() != null ? current.getSpell().toHTMLString() : "Select a Spell");
+	}
+	
+	public List<Spell> GetSearch(String s){
+		return ((s == null || s.length() == 0) ? getAll() : searchTree(s));
+		
+	}
+	
+	public List<Spell> getAll(){
+		List<Spell> toReturn = new ArrayList<Spell>();
+		
+		for(char alphabet = 'a'; alphabet <='z'; alphabet++ )
+		{
+			toReturn.addAll(searchTree(Character.toString(alphabet)));
+		}
+		
+		return toReturn;
 	}
 	
 	public List<Spell> searchTree(String s){
@@ -70,6 +89,27 @@ public class SpellBook {
 		
 		for(Node childN : n.getChildren()) {
 			addFound(childN, toReturn);
+		}
+	}
+	
+}
+
+class MasterNode{
+	private List<Node>[] nodeList;
+	
+	public MasterNode() {
+		nodeList = new List[27];
+		Arrays.setAll(nodeList,  ArrayList :: new);
+	}
+	
+	public void archiveNode(Node n) {
+		char letter = n.getLetter();
+		if(!Character.isLetter(letter)) {
+			nodeList[27].add(n);
+		}
+		else {
+			int index = (int)Character.toLowerCase(letter) - 'a'+1;
+			nodeList[index].add(n);
 		}
 	}
 	

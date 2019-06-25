@@ -17,6 +17,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class ReadJSON {
+	public void testSpellList(SpellBook book) {
+		
+	}
+	
 	
 	public void readSpells(SpellBook book) {
 		JSONParser parser = new JSONParser();

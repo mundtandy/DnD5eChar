@@ -23,6 +23,9 @@ import Ability.SpellBook;
 public class SpellList extends JPanel {
 	private SpellBook spellBook;
 	private JEditorPane displaySpell; 
+	private JTextField searchField;
+	private DefaultListModel model; 
+	
 	
 	public SpellList(SpellBook spellBook) {
 		this.spellBook = spellBook;
@@ -41,15 +44,15 @@ public class SpellList extends JPanel {
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BoxLayout (searchPanel, BoxLayout.Y_AXIS));
 		
-		JTextField searchField = new JTextField ();
+		searchField = new JTextField ();
 		searchField.setPreferredSize(new Dimension(300, 30));
 		searchField.setMaximumSize(searchField.getPreferredSize());
 		searchField.setMinimumSize(searchField.getPreferredSize());
 
 		TextPrompt tempText = new TextPrompt("Spell Name", searchField);
 		tempText.changeAlpha(0.5f);
-		DefaultListModel model = new DefaultListModel();
-		model.addElement("Empty");
+		model = new DefaultListModel();
+		newSearch("");
 
 		JList searchList = new JList(model);
 		
@@ -66,16 +69,7 @@ public class SpellList extends JPanel {
         });
 
 		searchField.getDocument().addDocumentListener((SimpleDocumentListener) e -> {
-			model.clear();
-			
-			List<Spell> fl = spellBook.searchTree(searchField.getText());
-			if(searchField.getText().length() == 0 || fl.size() == 0) {
-				model.addElement("Empty");
-			} else {
-				for(Spell s: fl) {
-					model.addElement(s.getName());
-				}
-			}
+			newSearch(searchField.getText());
 		});
 		
 		JScrollPane pane = new JScrollPane(searchList);
@@ -87,6 +81,20 @@ public class SpellList extends JPanel {
 		searchPanel.add(pane);
 		
 		return searchPanel;
+	}
+	
+	public void newSearch(String text) {
+		model.clear();
+		
+		List<Spell> fl = spellBook.GetSearch(text);
+		if(fl.size() == 0) {
+			model.addElement("Empty");
+		} else {				
+			for(Spell s: fl) {
+				model.addElement(s.getName());
+			}
+		}
+			
 	}
 	
 	public void setDisplayText(String s) {

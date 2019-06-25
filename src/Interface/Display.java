@@ -28,7 +28,7 @@ public class Display {
 	
 	public void createPanels(SpellBook spellBook) {
 		spellSearch = new SpellList(spellBook);
-		panelStore.add(spellSearch);
+		panelStore.add(new BorderPanel(spellSearch));
 	}
 	
 	
