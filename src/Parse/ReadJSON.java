@@ -18,8 +18,51 @@ import org.json.simple.parser.JSONParser;
 
 public class ReadJSON {
 	public void testSpellList(SpellBook book) {
+		JSONParser parser = new JSONParser();
+		try {
+			JSONObject spellList = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream("classspells.json")));
+			
+			String className;
+			JSONArray classList;
+			String spellArrayString;
+			//List<String> spells;
+			boolean missing = false;
+			for(Object o : spellList.keySet()) {
+				className = (String)o;
+
+				classList = (JSONArray) spellList.get(className);
+				for(int i = 0; i < classList.size(); i ++) {
+					spellArrayString = StripChars(classList.get(i).toString());
+					
+					if(!spellArrayString.equals(""))
+				    	for(String s : spellArrayString.split(",")) {
+							if(book.displaySpell(StripChars(s)).equals("Select a Spell")) {
+								missing = true;
+								System.out.println("MISSING! "+className+": "+i+": "+StripChars(s));
+							}
+						}
+						
+					}
+				
+				
+			}
+			if(!missing) {
+				System.out.println("No spells missing in classspells.json");
+			}
+		} catch(ParseException | IOException e) {
+			e.printStackTrace();
+
+		}
 		
 	}
+	
+	public String StripChars(String line) {
+		if(line.length() == 2) {
+			return "";
+		}
+		return line.substring(1, line.length()-1).replace("\\/", "/"); //yay escape characters! 
+	}
+	
 	
 	
 	public void readSpells(SpellBook book) {
@@ -27,7 +70,6 @@ public class ReadJSON {
 
 		try {
 			JSONObject spellsJ = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream("spells.json"), "UTF-8"));
-			//JSONObject listJ = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream("classspells.json"), "UTF-8"));
 			
 			String temp;
 			JSONObject listAr;

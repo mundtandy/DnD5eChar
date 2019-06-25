@@ -10,8 +10,7 @@ public class Main {
    ReadJSON r = new ReadJSON();
    SpellBook testBook = new SpellBook();
    r.readSpells(testBook);
-   
-   
+   r.testSpellList(testBook);
    //testBook.showTree();
    
    //for(Spell s : testBook.searchTree("An"))
