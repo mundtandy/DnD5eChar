@@ -17,7 +17,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class ReadJSON {
-	public void testSpellList(SpellBook book) {
+	public boolean testSpellList(SpellBook book) {
 		JSONParser parser = new JSONParser();
 		try {
 			JSONObject spellList = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream("classspells.json")));
@@ -34,28 +34,36 @@ public class ReadJSON {
 				for(int i = 0; i < classList.size(); i ++) {
 					spellArrayString = StripChars(classList.get(i).toString());
 					
-					if(!spellArrayString.equals(""))
+					if(!spellArrayString.equals("")) {
 				    	for(String s : spellArrayString.split(",")) {
 							if(book.displaySpell(StripChars(s)).equals("Select a Spell")) {
 								missing = true;
 								System.out.println("MISSING! "+className+": "+i+": "+StripChars(s));
 							}
+							else {
+								book.GetSearch(StripChars(s)).get(0).addClass(className);
+							}
 						}
 						
 					}
-				
+				}
 				
 			}
 			if(!missing) {
 				System.out.println("No spells missing in classspells.json");
+				
+				
 			}
+			
+			return missing;
 		} catch(ParseException | IOException e) {
 			e.printStackTrace();
 
 		}
+		return false;
 		
 	}
-	
+		
 	public String StripChars(String line) {
 		if(line.length() == 2) {
 			return "";

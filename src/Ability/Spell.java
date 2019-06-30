@@ -1,11 +1,15 @@
 package Ability;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Spell extends Ability{
 	private int level;
 	private String cTime, components, description, duration, range, school;
 	private boolean ritual;
 	private String[] sufixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
-
+	private List<String> classes;
+	
 	public Spell(String name, String cTime, String components, String description, String duration, Long level, String range,
 			String school, boolean ritual) {
 		super(name);
@@ -17,6 +21,7 @@ public class Spell extends Ability{
 		this.range = range;
 		this.school = school;
 		this.ritual = ritual;
+		classes = new ArrayList<String>();
 	}
 
 	public String toString() {
@@ -25,7 +30,9 @@ public class Spell extends Ability{
 				+ "Casting Time: " + cTime + "\n"
 				+ "Range: " + range + "\n"
 				+ "Components: " + components + "\n"
-				+ "Duration: " + duration + "\n\n"
+				+ "Duration: " + duration + "\n"
+				+ "Classes: " + formatClasses() + "\n\n"
+				
 				+ description;
 	}
 	
@@ -35,7 +42,8 @@ public class Spell extends Ability{
 				+ "Casting Time: " + cTime + "<br>"
 				+ "Range: " + range + "<br>"
 				+ "Components: " + components + "<br>"
-				+ "Duration: " + duration + "<br><br>"
+				+ "Duration: " + duration + "<br>"
+				+ "Classes: " + formatClasses() + "<br><br>"
 				+ formatDescription(description);
 	}
 	
@@ -48,6 +56,20 @@ public class Spell extends Ability{
 		newDescr = newDescr.replaceAll("\n", "<br>");
 		
 		return newDescr;
+	}
+	
+	public void addClass(String c) {
+		classes.add(c);
+	}
+	
+	public String formatClasses() {
+		if(classes.isEmpty())
+			return "None.";
+		String toReturn = "";
+		for (String c : classes){
+			toReturn += c +",";
+		}
+		return toReturn.substring(0, toReturn.length()-1);
 	}
 	
 	public String getOrdinal() {

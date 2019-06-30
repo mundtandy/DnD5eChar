@@ -11,6 +11,8 @@ public class Main {
    SpellBook testBook = new SpellBook();
    r.readSpells(testBook);
    r.testSpellList(testBook);
+	   
+   
    //testBook.showTree();
    
    //for(Spell s : testBook.searchTree("An"))
