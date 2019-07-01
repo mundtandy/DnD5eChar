@@ -29,9 +29,12 @@ public class ReadJSON {
 			boolean missing = false;
 			for(Object o : spellList.keySet()) {
 				className = (String)o;
-
+				book.addClass(className);
 				classList = (JSONArray) spellList.get(className);
 				for(int i = 0; i < classList.size(); i ++) {
+					if(book.getLevelList().size() < i) {
+						book.addSpellLevel(i);
+					}
 					spellArrayString = StripChars(classList.get(i).toString());
 					
 					if(!spellArrayString.equals("")) {

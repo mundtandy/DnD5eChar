@@ -62,6 +62,10 @@ public class Spell extends Ability{
 		classes.add(c);
 	}
 	
+	public boolean ClassHas(String c) {
+		return classes.contains(c);
+	}
+	
 	public String formatClasses() {
 		if(classes.isEmpty())
 			return "None.";

@@ -30,8 +30,4 @@ public class Display {
 		spellSearch = new SpellList(spellBook);
 		panelStore.add(new BorderPanel(spellSearch));
 	}
-	
-	
-
-	
 }

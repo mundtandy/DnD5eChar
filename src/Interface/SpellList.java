@@ -1,11 +1,16 @@
 package Interface;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -35,15 +40,10 @@ public class SpellList extends JPanel {
 		this.add(setRightSearch());
 	}
 	
-	/**
-	 * Panel Containing Search text box and results
-	 * 
-	 * @return
-	 */
-	public JPanel setLeftSearch() {
-		JPanel searchPanel = new JPanel();
-		searchPanel.setLayout(new BoxLayout (searchPanel, BoxLayout.Y_AXIS));
-		
+	public JPanel CreateDictSearch() {
+		JPanel dictSearch = new JPanel();
+		dictSearch.setLayout(new BoxLayout (dictSearch, BoxLayout.Y_AXIS));
+
 		searchField = new JTextField ();
 		searchField.setPreferredSize(new Dimension(300, 30));
 		searchField.setMaximumSize(searchField.getPreferredSize());
@@ -77,8 +77,77 @@ public class SpellList extends JPanel {
 		pane.setMaximumSize(pane.getPreferredSize());
 		pane.setMinimumSize(pane.getPreferredSize());
 
-		searchPanel.add(searchField);
-		searchPanel.add(pane);
+		dictSearch.add(searchField);
+		dictSearch.add(pane);
+		
+		return dictSearch;
+	}
+	
+	public JPanel CreateClassSearch() {
+		JPanel classSearch = new JPanel();
+		classSearch.setLayout(new BoxLayout (classSearch, BoxLayout.Y_AXIS));
+
+		String[] classArray = spellBook.getClasses().toArray(new String[spellBook.getClasses().size()]);;
+		
+		
+		
+		final JComboBox<String> cb = new JComboBox<String>(classArray);
+
+	    cb.setVisible(true);
+    	JList searchList = new JList(model);
+		
+		searchList.setVisibleRowCount(-1);
+		
+	    JScrollPane pane = new JScrollPane(searchList);
+		pane.setPreferredSize(new Dimension(300, 400));
+		pane.setMaximumSize(pane.getPreferredSize());
+		pane.setMinimumSize(pane.getPreferredSize());
+
+		
+
+		
+
+		classSearch.add(cb);
+		classSearch.add(pane);
+		
+		return classSearch;
+	}
+	
+	/**
+	 * Panel Containing Search text box and results
+	 * 
+	 * @return
+	 */
+	public JPanel setLeftSearch() {
+		JPanel searchPanel = new JPanel();
+		searchPanel.setLayout(new BoxLayout (searchPanel, BoxLayout.Y_AXIS));
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout (buttonPanel, BoxLayout.X_AXIS));
+		
+		JButton dictButton = new JButton("Spell Search");
+		JButton classButton = new JButton("Class Spells");
+		JPanel swapper = new JPanel(new CardLayout());
+		
+		ActionListener listen = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				CardLayout cl = (CardLayout)(swapper.getLayout());
+				String panelToSwap = arg0.getSource().equals(dictButton) ? "DICT" : "CLASS";
+				cl.show(swapper, panelToSwap);
+			}	
+		};
+		
+		dictButton.addActionListener(listen);
+		classButton.addActionListener(listen);
+		
+		buttonPanel.add(dictButton);
+		buttonPanel.add(classButton);
+		searchPanel.add(buttonPanel);
+		
+		
+		swapper.add(CreateDictSearch(), "DICT");
+		swapper.add(CreateClassSearch(), "CLASS");
+		searchPanel.add(swapper);
 		
 		return searchPanel;
 	}

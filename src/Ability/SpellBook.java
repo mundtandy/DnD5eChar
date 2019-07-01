@@ -5,9 +5,13 @@ import java.util.List;
 
 public class SpellBook {
 	private Node spellTree;
+	private List<SpellLevel> levels;
+	private List<String> classes;
 	
 	public SpellBook() {
 		spellTree = new Node('*');
+		levels = new ArrayList<SpellLevel>();
+		classes = new ArrayList<String>();
 	}
 	
 	public void addSpell(Spell spell) {
@@ -27,7 +31,19 @@ public class SpellBook {
 		currentNode.addSpell(spell);
 	}
 	
+	public List<String> getClasses(){
+		return classes;
+	}
 	
+	public void addClass(String s) {
+		if(!classes.contains(s)) {
+			classes.add(s);
+		}
+	}
+	
+	public List<SpellLevel> getLevelList(){
+		return levels;
+	}
 	
 	public void showTree() {
 		System.out.println("Spells added: "+spellTree.getAccess());
@@ -51,6 +67,10 @@ public class SpellBook {
 	public List<Spell> GetSearch(String s){
 		return ((s == null || s.length() == 0) ? getAll() : searchTree(s));
 		
+	}
+	
+	public void addSpellLevel(int i) {
+		levels.add(new SpellLevel(i));
 	}
 	
 	public List<Spell> getAll(){
@@ -80,7 +100,6 @@ public class SpellBook {
 		addFound(current, toReturn);
 		
 		return toReturn;
-		
 	}
 	
 	public void addFound(Node n, List<Spell> toReturn) {
@@ -91,7 +110,6 @@ public class SpellBook {
 			addFound(childN, toReturn);
 		}
 	}
-	
 }
 
 class MasterNode{
@@ -112,7 +130,46 @@ class MasterNode{
 			nodeList[index].add(n);
 		}
 	}
+}
+
+class SpellLevel{
+	private int level;
+	private List<Spell> spells;
 	
+	public SpellLevel(int level) {
+		this.level = level;
+		spells = new ArrayList<Spell>();
+	}
+	
+	public void AddSpell(Spell s) {
+		
+		for(int i = 0; i < spells.size(); i ++) {
+			if(spells.get(i).name.compareTo(s.name) < 0){
+				spells.add(i, s);
+				return;
+			}
+		}
+		spells.add(s);
+	}
+	
+	public int GetLevel() {
+		return level;
+	}
+	
+	public List<Spell> getSpells(){
+		return spells;
+	}
+	
+	public List<Spell> getSpellsByClass(String className){
+		List<Spell> toReturn = new ArrayList<Spell>();
+		for(int i = 0; i < spells.size(); i++) {
+			if(spells.get(i).ClassHas(className)) {
+				toReturn.add(spells.get(i));
+			}
+		}
+		
+		return toReturn;
+	}
 }
 
 class Node{
