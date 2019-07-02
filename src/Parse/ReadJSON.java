@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
@@ -32,7 +33,7 @@ public class ReadJSON {
 				book.addClass(className);
 				classList = (JSONArray) spellList.get(className);
 				for(int i = 0; i < classList.size(); i ++) {
-					if(book.getLevelList().size() < i) {
+					if(book.getLevelList().size() < i+1) {
 						book.addSpellLevel(i);
 					}
 					spellArrayString = StripChars(classList.get(i).toString());
@@ -45,6 +46,7 @@ public class ReadJSON {
 							}
 							else {
 								book.GetSearch(StripChars(s)).get(0).addClass(className);
+								book.addSpellToLevel(i,book.GetSearch(StripChars(s)).get(0));
 							}
 						}
 						

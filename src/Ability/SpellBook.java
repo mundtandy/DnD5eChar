@@ -7,6 +7,7 @@ public class SpellBook {
 	private Node spellTree;
 	private List<SpellLevel> levels;
 	private List<String> classes;
+	private String[] sufixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
 	
 	public SpellBook() {
 		spellTree = new Node('*');
@@ -45,6 +46,35 @@ public class SpellBook {
 		return levels;
 	}
 	
+	public List<String> getLevelListPerClass(String classname){
+		List<String> toReturn = new ArrayList<String>();
+		List<Spell> forLevel;
+		for(int i = 0; i < levels.size(); i++) {
+			forLevel = levels.get(i).getSpellsByClass(classname);
+			System.out.println(forLevel.size());
+			if(forLevel.size() > 0) {
+				toReturn.add(" - "+(i == 0 ? "Cantrip " : getOrdinal(i) + " level")+" - ");
+			}
+			for(Spell s : forLevel) {
+				toReturn.add(s.name);
+			}
+		}
+		
+		return toReturn;
+	}
+	
+	public String getOrdinal(int level) {
+		switch (level % 100) {
+		    case 11:
+		    case 12:
+		    case 13:
+		        return level + "th";
+		    default:
+		        return level + sufixes[level % 10];
+
+		    }
+	}
+	
 	public void showTree() {
 		System.out.println("Spells added: "+spellTree.getAccess());
 		spellTree.displayTree("");
@@ -71,6 +101,10 @@ public class SpellBook {
 	
 	public void addSpellLevel(int i) {
 		levels.add(new SpellLevel(i));
+	}
+	
+	public void addSpellToLevel(int i, Spell s) {
+		levels.get(i).AddSpell(s);
 	}
 	
 	public List<Spell> getAll(){
@@ -142,7 +176,7 @@ class SpellLevel{
 	}
 	
 	public void AddSpell(Spell s) {
-		
+		if(!spells.contains(s)) {
 		for(int i = 0; i < spells.size(); i ++) {
 			if(spells.get(i).name.compareTo(s.name) < 0){
 				spells.add(i, s);
@@ -150,6 +184,7 @@ class SpellLevel{
 			}
 		}
 		spells.add(s);
+		}
 	}
 	
 	public int GetLevel() {

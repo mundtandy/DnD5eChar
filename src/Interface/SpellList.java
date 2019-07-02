@@ -92,12 +92,33 @@ public class SpellList extends JPanel {
 		
 		
 		final JComboBox<String> cb = new JComboBox<String>(classArray);
-
 	    cb.setVisible(true);
+	    cb.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				classSelect((String)cb.getSelectedItem());
+				
+			}
+	    	
+	    });
+	    
     	JList searchList = new JList(model);
 		
 		searchList.setVisibleRowCount(-1);
 		
+		searchList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent arg0) {
+            	if (!arg0.getValueIsAdjusting()) {
+            		if(!searchList.isSelectionEmpty()) { //prevents crashing from model.clear() below
+            			if(!searchList.getSelectedValue().toString().startsWith(" - ")) {
+            		setDisplayText(spellBook.displaySpell(searchList.getSelectedValue().toString()));
+                }}
+            	}
+ 
+            }
+        });
 	    JScrollPane pane = new JScrollPane(searchList);
 		pane.setPreferredSize(new Dimension(300, 400));
 		pane.setMaximumSize(pane.getPreferredSize());
@@ -162,8 +183,17 @@ public class SpellList extends JPanel {
 			for(Spell s: fl) {
 				model.addElement(s.getName());
 			}
+		}	
+	}
+	
+	public void classSelect(String classSelected) {
+		model.clear();
+		System.out.println("here");
+		List<String> fl = spellBook.getLevelListPerClass(classSelected);
+		
+		for(String s: fl) {
+			model.addElement(s);
 		}
-			
 	}
 	
 	public void setDisplayText(String s) {
