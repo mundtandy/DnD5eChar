@@ -1,0 +1,75 @@
+{
+    "Barbarian" : {
+        "Description" : "A fierce warrior of primitive background who can enter a battle rage",
+        "Hit Die" : "D12",
+        "Saving Throw Prof" : "STR,CON",
+        "Multiclass PreReq" : "STR13"
+    },
+    "Bard" : {
+        "Description" : "An inspiring magician whose power echoes the music of creation",
+        "Hit Die" : "D8",
+        "Saving Throw Prof" : "DEX,CHA",
+        "Multiclass PreReq" : "CHA13"
+    },
+    "Cleric" : {
+        "Description" : "A priestly champion who wields divine magic in service of a higher power",
+        "Hit Die" : "D8",
+        "Saving Throw Prof" : "WIS,CHA",
+        "Multiclass PreReq" : "WIS13"
+    },
+    "Druid" : {
+        "Description" : "A priest of the Old Faith, wielding the powers of nature — moonlight and plant growth, fire and lightning — and adopting animal forms",
+        "Hit Die" : "D8",
+        "Saving Throw Prof" : "INT,WIS",
+        "Multiclass PreReq" : "WIS13"
+    },
+    "Fighter" : {
+        "Description" : "A master of martial combat, skilled with a variety of weapons and armor",
+        "Hit Die" : "D10",
+        "Saving Throw Prof" : "STR,CON",
+        "Multiclass PreReq" : "STR13/DEX13"
+    },
+    "Monk" : {
+        "Description" : "A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection",
+        "Hit Die" : "D8",
+        "Saving Throw Prof" : "STR,DEX",
+        "Multiclass PreReq" : "DEX13+WIS13"
+    },
+    "Paladin" : {
+        "Description" : "A holy warrior bound to a sacred oath",
+        "Hit Die" : "d10",
+        "Saving Throw Prof" : "WIS,CHA",
+        "Multiclass PreReq" : "STR13+CHA13"
+    },
+    "Ranger" : {
+        "Description" : "A warrior who uses martial prowess and nature magic to combat threats on the edges of civilization",
+        "Hit Die" : "D10",
+        "Saving Throw Prof" : "STR,DEX",
+        "Multiclass PreReq" : "DEX13+WIS13"
+    },
+    "Rogue" : {
+        "Description" : "A scoundrel who uses stealth and trickery to overcome obstacles and enemies",
+        "Hit Die" : "D8",
+        "Saving Throw Prof" : "DEX,INT",
+        "Multiclass PreReq" : "DEX13"
+    },
+    "Sorcerer" : {
+        "Description" : "A spellcaster who draws on inherent magic from a gift or bloodline",
+        "Hit Die" : "D6",
+        "Saving Throw Prof" : "CON,CHA",
+        "Multiclass PreReq" : "CHA13"
+    },
+    "Warlock" : {
+        "Description" : "A wielder of magic that is derived from a bargain with an extraplanar entity",
+        "Hit Die" : "D8",
+        "Saving Throw Prof" : "WIS,CHA",
+        "Multiclass PreReq" : "CHA13"
+    },
+    "Wizard" : {
+        "Description" : "A scholarly magic-user capable of manipulating the structures of reality",
+        "Hit Die" : "D6",
+        "Saving Throw Prof" : "INT,WIS",
+        "Multiclass PreReq" : "INT13"
+    }
+
+}

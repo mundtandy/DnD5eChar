@@ -4,9 +4,23 @@ import java.util.Random;
 
 public class Dice {
   private static Random rand;
+  private int dieValue;
   
   public Dice() {
     rand = new Random();
+  }
+  
+  public Dice(String diceString) {
+	  String value = diceString.substring(1);
+	  dieValue = Integer.parseInt(value);
+  }
+  
+  public int GetMax() {
+	  return dieValue;
+  }
+  
+  public int GetAvg() {
+	  return (dieValue/2)+1;
   }
   
   public int roll(int number, int type) {

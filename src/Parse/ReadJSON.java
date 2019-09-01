@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.json.simple.parser.ParseException;
 
 import Ability.Spell;
 import Ability.SpellBook;
+import Customisation.PClass;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -76,7 +78,30 @@ public class ReadJSON {
 		return line.substring(1, line.length()-1).replace("\\/", "/"); //yay escape characters! 
 	}
 	
-	
+	public ArrayList<PClass> readClasses() {
+		JSONParser parser = new JSONParser();
+		
+		try {
+			JSONObject classesJ = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream("classes.json"), "UTF-8"));
+			ArrayList<PClass> classList = new ArrayList<PClass>();
+			
+			String temp;
+			JSONObject listAr;
+			
+			for(Object o : classesJ.keySet()) {
+				temp = (String)o;
+				listAr = (JSONObject) classesJ.get(temp);
+				classList.add(new PClass(temp, listAr));
+			}
+			
+			
+			return classList;
+		}catch(ParseException | IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 	
 	public void readSpells(SpellBook book) {
 		JSONParser parser = new JSONParser();
