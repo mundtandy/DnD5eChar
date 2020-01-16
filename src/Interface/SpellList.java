@@ -30,6 +30,7 @@ public class SpellList extends JPanel {
 	private JEditorPane displaySpell; 
 	private JTextField searchField;
 	private DefaultListModel model; 
+	private JComboBox<String> cb;
 	
 	
 	public SpellList(SpellBook spellBook) {
@@ -91,7 +92,7 @@ public class SpellList extends JPanel {
 		
 		
 		
-		final JComboBox<String> cb = new JComboBox<String>(classArray);
+		cb = new JComboBox<String>(classArray);
 	    cb.setVisible(true);
 	    cb.addActionListener(new ActionListener() {
 
@@ -155,6 +156,8 @@ public class SpellList extends JPanel {
 				CardLayout cl = (CardLayout)(swapper.getLayout());
 				String panelToSwap = arg0.getSource().equals(dictButton) ? "DICT" : "CLASS";
 				cl.show(swapper, panelToSwap);
+				repopSpells(panelToSwap);
+				
 			}	
 		};
 		
@@ -173,6 +176,13 @@ public class SpellList extends JPanel {
 		return searchPanel;
 	}
 	
+	public void repopSpells(String panel) {
+		if(panel.equals("DICT"))
+			newSearch(searchField.getText());
+		else
+			classSelect((String)cb.getSelectedItem());
+	}
+	
 	public void newSearch(String text) {
 		model.clear();
 		
@@ -188,7 +198,7 @@ public class SpellList extends JPanel {
 	
 	public void classSelect(String classSelected) {
 		model.clear();
-		System.out.println("here");
+		
 		List<String> fl = spellBook.getLevelListPerClass(classSelected);
 		
 		for(String s: fl) {
