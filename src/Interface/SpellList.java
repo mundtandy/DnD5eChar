@@ -53,7 +53,7 @@ public class SpellList extends JPanel {
 		TextPrompt tempText = new TextPrompt("Spell Name", searchField);
 		tempText.changeAlpha(0.5f);
 		model = new DefaultListModel();
-		newSearch("");
+		dictSearch("");
 
 		JList searchList = new JList(model);
 		
@@ -70,7 +70,7 @@ public class SpellList extends JPanel {
         });
 
 		searchField.getDocument().addDocumentListener((SimpleDocumentListener) e -> {
-			newSearch(searchField.getText());
+			dictSearch(searchField.getText());
 		});
 		
 		JScrollPane pane = new JScrollPane(searchList);
@@ -114,8 +114,9 @@ public class SpellList extends JPanel {
             	if (!arg0.getValueIsAdjusting()) {
             		if(!searchList.isSelectionEmpty()) { //prevents crashing from model.clear() below
             			if(!searchList.getSelectedValue().toString().startsWith(" - ")) {
-            		setDisplayText(spellBook.displaySpell(searchList.getSelectedValue().toString()));
-                }}
+        					setDisplayText(spellBook.displaySpell(searchList.getSelectedValue().toString()));
+            			}
+        			}
             	}
  
             }
@@ -124,10 +125,6 @@ public class SpellList extends JPanel {
 		pane.setPreferredSize(new Dimension(300, 400));
 		pane.setMaximumSize(pane.getPreferredSize());
 		pane.setMinimumSize(pane.getPreferredSize());
-
-		
-
-		
 
 		classSearch.add(cb);
 		classSearch.add(pane);
@@ -168,7 +165,6 @@ public class SpellList extends JPanel {
 		buttonPanel.add(classButton);
 		searchPanel.add(buttonPanel);
 		
-		
 		swapper.add(CreateDictSearch(), "DICT");
 		swapper.add(CreateClassSearch(), "CLASS");
 		searchPanel.add(swapper);
@@ -178,12 +174,12 @@ public class SpellList extends JPanel {
 	
 	public void repopSpells(String panel) {
 		if(panel.equals("DICT"))
-			newSearch(searchField.getText());
+			dictSearch(searchField.getText());
 		else
 			classSelect((String)cb.getSelectedItem());
 	}
 	
-	public void newSearch(String text) {
+	public void dictSearch(String text) {
 		model.clear();
 		
 		List<Spell> fl = spellBook.GetSearch(text);

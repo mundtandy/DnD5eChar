@@ -569,7 +569,7 @@
         "school" : "Divination",
         "ritual" : false
     },
-    
+
     "Commune with Nature" : {
         "casting_time" : "1 minute",
         "components" : "V, S",
@@ -960,7 +960,7 @@
         "school" : "Divination",
         "ritual" : true
     },
-    
+
     "Detect Poison and Disease" : {
         "casting_time" : "1 action",
         "components" : "V, S, M (a yew leaf)",
@@ -971,7 +971,7 @@
         "school" : "Divination",
         "ritual" : true
     },
-    
+
     "Detect Thoughts" : {
         "casting_time" : "1 action",
         "components" : "V, S, M (a copper piece)",
@@ -1142,7 +1142,7 @@
         "school" : "Evocation",
         "ritual" : false
     },
-    
+
     "Eldritch Blast" : {
         "casting_time" : "1 action",
         "components" : "V, S",
@@ -1153,7 +1153,7 @@
         "school" : "Evocation",
         "ritual" : false
     },
-    
+
     "Elemental Weapon" : {
         "casting_time" : "1 action",
         "components" : "V, S",
@@ -1164,7 +1164,7 @@
         "school" : "Transmutation",
         "ritual" : false
     },
-    
+
     "Enhance Ability" : {
         "casting_time" : "1 action",
         "components" : "V, S, M (fur or a feather from a beast)",
@@ -1175,7 +1175,7 @@
         "school" : "Transmutation   ",
         "ritual" : false
     },
-    
+
     "Enlarge/Reduce" : {
         "casting_time" : "1 action",
         "components" : "V, S, M (a pinch of powdered iron)",
@@ -1186,7 +1186,7 @@
         "school" : "Transmutation",
         "ritual" : false
     },
-    
+
     "Ensnaring Strike" : {
         "casting_time" : "1 bonus action",
         "components" : "V",
@@ -1197,7 +1197,7 @@
         "school" : "Conjuration",
         "ritual" : false
     },
-    
+
     "Entangle" : {
         "casting_time" : "1 action",
         "components" : "V, S",
@@ -1208,7 +1208,7 @@
         "school" : "Conjuration",
         "ritual" : false
     },
-    
+
     "Enthrall" : {
         "casting_time" : "1 action",
         "components" : "V, S",
@@ -1419,7 +1419,7 @@
         "school" : "Evocation",
         "ritual" : false
     },
-    
+
     "Flame Blade" : {
         "casting_time" : "1 bonus action",
         "components" : "V, S, M (leaf of sumac)",
@@ -1780,7 +1780,7 @@
         "school" : "Evocation",
         "ritual" : false
     },
-    
+
     "Heat Metal" : {
         "casting_time" : "1 bonus action",
         "components" : "V",
@@ -2371,7 +2371,7 @@
         "school": "Evocation",
         "ritual": false
     },
-    
+
     "Mordenkainen's Faithful Hound" : {
         "casting_time" : "1 action",
         "components" : "V, S, M (a tiny silver whistle, a piece of bone, and a thread)",
@@ -3330,6 +3330,16 @@
         "level" : 0,
         "range" : "30 feet",
         "school" : "Transmutation",
+        "ritual" : false
+    },
+    "Thunderclap" :{
+        "casting_time" : "1 action",
+        "components" : "S",
+        "description" : "You create a burst of thunderous sound that can be heard up to 100 feet away. Each creature within range, other than you, must succeed on a Constitution saving throw or take 1d6 thunder damage.\n\nThe spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
+        "duration" : "Instantaneous",
+        "level" : 0,
+        "range" : "5 feet",
+        "school" : "Evocation",
         "ritual" : false
     },
     "Thunderous Smite" : {
